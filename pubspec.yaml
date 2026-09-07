@@ -1,0 +1,20 @@
+name: fitness_workout_planner
+description: A fitness workout planning app.
+publish_to: 'none'
+
+environment:
+  sdk: '^3.13.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+  fl_chart: ^0.68.0
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
