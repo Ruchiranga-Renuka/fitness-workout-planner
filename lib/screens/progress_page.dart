@@ -49,7 +49,7 @@ class ProgressPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             _SummaryCard(
-              label: 'Current Streak 🔥',
+              label: 'Current Streak',
               value: '${appState.streak} day${appState.streak == 1 ? '' : 's'}',
               icon: Icons.calendar_today,
               color: Colors.red,
@@ -60,7 +60,7 @@ class ProgressPage extends StatelessWidget {
 
             // ── Bar chart ────────────────────────────────────────
             const Text(
-              'Calories — Last Workouts',
+              'Calories - Last Workouts',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 14),

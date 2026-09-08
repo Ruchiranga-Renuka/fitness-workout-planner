@@ -61,7 +61,7 @@ class BmiPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${profile.height.toStringAsFixed(0)} cm  •  ${profile.weight.toStringAsFixed(0)} kg',
+                    '${profile.height.toStringAsFixed(0)} cm  |  ${profile.weight.toStringAsFixed(0)} kg',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],
@@ -127,9 +127,9 @@ class _ReferenceTable extends StatelessWidget {
   Widget build(BuildContext context) {
     final rows = [
       ('< 18.5', 'Underweight', Colors.blue),
-      ('18.5 – 24.9', 'Normal', Colors.green),
-      ('25 – 29.9', 'Overweight', Colors.orange),
-      ('≥ 30', 'Obese', Colors.red),
+      ('18.5 - 24.9', 'Normal', Colors.green),
+      ('25 - 29.9', 'Overweight', Colors.orange),
+      ('>= 30', 'Obese', Colors.red),
     ];
 
     return Card(

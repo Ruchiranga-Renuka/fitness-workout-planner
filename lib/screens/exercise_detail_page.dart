@@ -143,7 +143,7 @@ class ExerciseDetailPage extends StatelessWidget {
             if (context.mounted) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('✅ ${exercise.name} completed!'),
+                  content: Text('${exercise.name} completed!'),
                   backgroundColor: Colors.green,
                 ),
               );

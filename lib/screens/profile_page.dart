@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${profile.goal}  •  ${profile.level}',
+                  '${profile.goal}  |  ${profile.level}',
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ],

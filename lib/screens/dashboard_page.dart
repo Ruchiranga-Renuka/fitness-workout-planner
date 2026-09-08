@@ -8,7 +8,7 @@ const _quotes = [
   "Push yourself, because no one else is going to do it for you.",
   "Success starts with self-discipline.",
   "Your body can stand almost anything. It's your mind you have to convince.",
-  "Don't limit your challenges — challenge your limits.",
+  "Don't limit your challenges, challenge your limits.",
 ];
 
 class DashboardPage extends StatelessWidget {
@@ -67,7 +67,7 @@ class DashboardPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            '${appState.streak} day streak  •  ${appState.userProfile.goal}',
+                            '${appState.streak} day streak  |  ${appState.userProfile.goal}',
                             style: TextStyle(
                               color: colorScheme.onPrimary.withAlpha(210),
                             ),
