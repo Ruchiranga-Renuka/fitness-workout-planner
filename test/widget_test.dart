@@ -20,7 +20,7 @@ void main() {
       ),
     );
 
-    expect(find.text('Fitness Planner'), findsOneWidget);
+    expect(find.text('Today'), findsOneWidget);
     expect(find.text('Workouts'), findsOneWidget);
   });
 }
