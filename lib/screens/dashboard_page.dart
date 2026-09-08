@@ -23,107 +23,133 @@ class DashboardPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Fitness Planner',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: colorScheme.primaryContainer,
+        title: const Text('Today'),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hello, ${appState.userProfile.name} 👋',
-              style: const TextStyle(
-                fontSize: 24,
+              'Good morning, ${appState.userProfile.name}',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 6),
             Text(
-              "Let's achieve your fitness goals today!",
-              style: TextStyle(fontSize: 15, color: Colors.grey[600]),
+              'A small session today keeps your momentum going.',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
-            // ── Stat cards ──────────────────────────────────────
-            Row(
-              children: [
-                Expanded(
-                  child: _StatCard(
-                    title: 'Workouts',
-                    value: appState.totalWorkouts.toString(),
-                    icon: Icons.fitness_center,
-                    color: Colors.blue,
-                  ),
+            Card(
+              color: colorScheme.primary,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Ready for your next win?',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  color: colorScheme.onPrimary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            '${appState.streak} day streak  •  ${appState.userProfile.goal}',
+                            style: TextStyle(
+                              color: colorScheme.onPrimary.withAlpha(210),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          FilledButton.icon(
+                            onPressed: onGoToWorkout,
+                            style: FilledButton.styleFrom(
+                              backgroundColor: colorScheme.onPrimary,
+                              foregroundColor: colorScheme.primary,
+                            ),
+                            icon: const Icon(Icons.play_arrow_rounded),
+                            label: const Text('Start workout'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.directions_run_rounded,
+                      size: 72,
+                      color: colorScheme.onPrimary.withAlpha(210),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _StatCard(
-                    title: 'Calories',
-                    value: appState.totalCalories.toString(),
-                    icon: Icons.local_fire_department,
-                    color: Colors.orange,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: _StatCard(
-                    title: 'Streak 🔥',
-                    value: '${appState.streak} days',
-                    icon: Icons.calendar_today,
-                    color: Colors.red,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _StatCard(
-                    title: 'BMI',
-                    value: appState.userProfile.bmi.toStringAsFixed(1),
-                    icon: Icons.monitor_weight,
-                    color: Colors.green,
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 28),
-
-            // ── Start Workout button ────────────────────────────
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton.icon(
-                icon: const Icon(Icons.play_arrow_rounded),
-                label: const Text(
-                  "Start Today's Workout",
-                  style: TextStyle(fontSize: 16),
-                ),
-                style: FilledButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                onPressed: onGoToWorkout,
               ),
             ),
 
-            const SizedBox(height: 28),
+            const SizedBox(height: 24),
+            Text(
+              'Your overview',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 12),
 
-            // ── Daily Motivation ────────────────────────────────
-            const Text(
-              "Today's Motivation",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 1.55,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                _StatCard(
+                  title: 'Workouts',
+                  value: appState.totalWorkouts.toString(),
+                  icon: Icons.fitness_center,
+                  color: Colors.blue,
+                ),
+                _StatCard(
+                  title: 'Calories',
+                  value: appState.totalCalories.toString(),
+                  icon: Icons.local_fire_department,
+                  color: Colors.orange,
+                ),
+                _StatCard(
+                  title: 'Streak',
+                  value: '${appState.streak} days',
+                  icon: Icons.local_fire_department,
+                  color: Colors.red,
+                ),
+                _StatCard(
+                  title: 'BMI',
+                  value: appState.userProfile.bmi.toStringAsFixed(1),
+                  icon: Icons.monitor_weight,
+                  color: Colors.green,
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 24),
+
+            Text(
+              'Daily motivation',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 10),
             Card(
-              color: colorScheme.primaryContainer,
+              color: colorScheme.secondaryContainer,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -173,25 +199,29 @@ class _StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+        padding: const EdgeInsets.all(14),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(icon, size: 30, color: color),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              title,
-              style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+            Icon(icon, size: 24, color: color),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                ),
+              ],
             ),
           ],
         ),
